@@ -1,0 +1,22 @@
+---
+- name: Deploy Nexus and SonarQube on the Security VM
+  hosts: security
+  become: yes
+  tasks:
+    - name: Pull and run Nexus container
+      ansible.builtin.docker_container:
+        name: nexus
+        image: sonatype/nexus3:latest
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8081:8081"
+
+    - name: Pull and run SonarQube container
+      ansible.builtin.docker_container:
+        name: sonar
+        image: sonarqube:lts-community
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "9000:9000"
