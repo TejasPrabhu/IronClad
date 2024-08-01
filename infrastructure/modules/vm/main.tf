@@ -49,26 +49,3 @@ resource "azurerm_linux_virtual_machine" "vm" {
     "environment" = "IronClad"
   }
 }
-
-/*
-resource "azurerm_virtual_machine_extension" "ansible_extension" {
-  count                   = var.install_ansible ? 1 : 0 
-  name                    = "install_ansible"
-  virtual_machine_id      = azurerm_linux_virtual_machine.vm.id
-  publisher               = "Microsoft.Azure.Extensions"
-  type                    = "CustomScript"
-  type_handler_version    = "2.0"
-
-  protected_settings = <<PROT
-  {
-      "script": "${base64encode(file(var.ansible_installation_script_path))}"
-  }
-  PROT
-
-  depends_on = [
-    azurerm_linux_virtual_machine.vm
-  ]
-}
-*/
-
-

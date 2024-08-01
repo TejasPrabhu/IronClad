@@ -1,6 +1,0 @@
-- fix ansible playbook for docker installation
-- improve docker login
-- ssh secret key management
-- improve paths and hardcoded values
-- optimise vm resources, attach storage if required
-- static pvt ips for vm
