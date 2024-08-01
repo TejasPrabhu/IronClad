@@ -1,0 +1,65 @@
+---
+- name: Install kubectl on all nodes
+  hosts: all
+  become: yes
+  vars:
+    kubectl_version: "v1.21.0"
+    kubectl_binary_url: "https://dl.k8s.io/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
+    kubectl_sha256_url: "https://dl.k8s.io/{{ kubectl_version }}/bin/linux/amd64/kubectl.sha256"
+    download_dir: "/tmp"
+
+  tasks:
+    - name: Ensure dependencies are installed
+      package:
+        name: curl
+        state: present
+
+    - name: Check if kubectl is already installed
+      command: kubectl version --client --short
+      register: kubectl_check
+      ignore_errors: yes
+
+    - name: Skip installation if kubectl is already installed
+      debug:
+        msg: "kubectl is already installed."
+      when: kubectl_check.rc == 0
+
+    - name: Download kubectl binary
+      get_url:
+        url: "{{ kubectl_binary_url }}"
+        dest: "{{ download_dir }}/kubectl"
+        mode: '0755'
+      when: kubectl_check.rc != 0
+
+    - name: Download kubectl sha256 checksum
+      get_url:
+        url: "{{ kubectl_sha256_url }}"
+        dest: "{{ download_dir }}/kubectl.sha256"
+      when: kubectl_check.rc != 0
+
+    - name: Verify kubectl checksum
+      command: "sha256sum -c kubectl.sha256"
+      args:
+        chdir: "{{ download_dir }}"
+      when: kubectl_check.rc != 0
+
+    - name: Move kubectl to /usr/local/bin
+      command: mv {{ download_dir }}/kubectl /usr/local/bin/kubectl
+      when: kubectl_check.rc != 0
+
+    - name: Ensure kubectl binary is executable
+      file:
+        path: /usr/local/bin/kubectl
+        mode: '0755'
+        state: file
+      when: kubectl_check.rc != 0
+
+    - name: Verify kubectl installation
+      command: kubectl version --client --short
+      register: kubectl_version
+      when: kubectl_check.rc != 0
+
+    - name: Display kubectl version
+      debug:
+        msg: "{{ kubectl_version.stdout }}"
+      when: kubectl_check.rc != 0

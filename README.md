@@ -1,53 +1,52 @@
-# BoardgameListingWebApp
+# IronClad: CI/CD Pipeline Project
 
-## Description
+Welcome to IronClad, a comprehensive CI/CD pipeline project designed to demonstrate a fully integrated development and operations workflow. This project showcases the use of various DevOps tools and practices to automate the build, test, and deployment processes in a secure and scalable manner.
 
-**Board Game Database Full-Stack Web Application.**
-This web application displays lists of board games and their reviews. While anyone can view the board game lists and reviews, they are required to log in to add/ edit the board games and their reviews. The 'users' have the authority to add board games to the list and add reviews, and the 'managers' have the authority to edit/ delete the reviews on top of the authorities of users.  
+## Table of Contents
 
-## Technologies
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [How to Run](#how-to-run)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
 
-- Java
-- Spring Boot
-- Amazon Web Services(AWS) EC2
-- Thymeleaf
-- Thymeleaf Fragments
-- HTML5
-- CSS
-- JavaScript
-- Spring MVC
-- JDBC
-- H2 Database Engine (In-memory)
-- JUnit test framework
-- Spring Security
-- Twitter Bootstrap
-- Maven
+## Project Overview
+
+IronClad provides hands-on experience with setting up a CI/CD pipeline that integrates automated testing, quality checks, and secure deployments. The project is designed for both learning and demonstration purposes, illustrating the application of DevOps principles.
 
 ## Features
 
-- Full-Stack Application
-- UI components created with Thymeleaf and styled with Twitter Bootstrap
-- Authentication and authorization using Spring Security
-  - Authentication by allowing the users to authenticate with a username and password
-  - Authorization by granting different permissions based on the roles (non-members, users, and managers)
-- Different roles (non-members, users, and managers) with varying levels of permissions
-  - Non-members only can see the boardgame lists and reviews
-  - Users can add board games and write reviews
-  - Managers can edit and delete the reviews
-- Deployed the application on AWS EC2
-- JUnit test framework for unit testing
-- Spring MVC best practices to segregate views, controllers, and database packages
-- JDBC for database connectivity and interaction
-- CRUD (Create, Read, Update, Delete) operations for managing data in the database
-- Schema.sql file to customize the schema and input initial data
-- Thymeleaf Fragments to reduce redundancy of repeating HTML elements (head, footer, navigation)
+- Automated CI/CD pipeline with Jenkins
+- Secure artifact storage with Nexus
+- Containerized deployment with Docker and Kubernetes
+- Code quality checks and vulnerability scanning
+- Real-time monitoring and alerts
+
+## Technologies Used
+
+- Jenkins, GitHub, Nexus, Docker, Kubernetes
+- SonarQube, Trivy for code quality and vulnerability scanning
+- Grafana, Prometheus for monitoring
+- Terraform for infrastructure as code
+- Ansible for configuration management
 
 ## How to Run
 
-1. Clone the repository
-2. Open the project in your IDE of choice
-3. Run the application
-4. To use initial user data, use the following credentials.
-  - username: bugs    |     password: bunny (user role)
-  - username: daffy   |     password: duck  (manager role)
-5. You can also sign-up as a new user and customize your role to play with the application! 😊
+Detailed instructions for setting up and running the project are available in the [Setup Guide](docs/setup.md).
+
+## Documentation
+
+- [Requirements](docs/requirements.md) - Project requirements and resource descriptions.
+- [Architecture](docs/architecture.md) - Detailed explanation of the project architecture.
+- [Setup Guide](docs/setup.md) - Instructions for setting up the project environment.
+<!-- - [Security Practices](docs/security.md) - Security measures and compliance standards.
+- [Monitoring and Alerts](docs/monitoring.md) - Monitoring setup and alerting mechanisms. -->
+
+## Contributing
+
+Interested in contributing to IronClad? Please read our [contributing guidelines](docs/contributing.md) for details on our code of conduct and the process for submitting pull requests.
+
+---
+
+For more information on how to use, customize, and contribute to IronClad, please visit the [official documentation](docs/).
